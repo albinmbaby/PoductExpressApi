@@ -2,8 +2,14 @@ const express = require('express')
 const router = express.Router()
 const products = require('../products')
 
+const myLogger = function (req, res, next) {
+    console.log('LOGGED')
+    console.log(req.body)
+    next()
+  }
+
 // /products
-router.get('/',(req,res)=>{
+router.get('/',myLogger,(req,res)=>{
     // res.send("Get all products")
     try {
         res.status(200).json(products)
@@ -28,7 +34,7 @@ router.get('/:id',(req,res)=>{
 })
 
 //POST- create product
-router.post('/',(req,res)=>{
+router.post('/',myLogger,(req,res)=>{
     try {
         if(!req.body)  res.status(404).json
         ({message:"Name and price are required"})
