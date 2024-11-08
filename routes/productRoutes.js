@@ -45,7 +45,7 @@ router.post('/',myLogger,(req,res)=>{
             price:price
         }
         products.push(newProduct)
-        res.status(200).json({message:"Product added",
+        res.status(201).json({message:"Product added",
         product:newProduct})
     } catch (error) {
         res.status(404).json({error:error.message})
